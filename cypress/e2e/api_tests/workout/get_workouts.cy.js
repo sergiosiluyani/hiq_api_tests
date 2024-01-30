@@ -1,4 +1,3 @@
-const { expect } = require("chai");
 const { request } = require("http");
 
 let tokenvalue

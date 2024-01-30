@@ -1,4 +1,3 @@
-const { expect } = require("chai");
 const { request } = require("http");
 
 let tokenvalue
@@ -16,14 +15,17 @@ beforeEach(() => {
 })
 })
 
-it('get workouts data', () => {
-      cy.request({
-          headers: {
-          Authorization: 'Bearer '+tokenvalue,
-          accept: 'application/json'
-        },
-        method: 'POST',
-        url: 'http://54.193.113.143:4000/workouts'
+it('posts workouts data', () => {
+  cy.fixture('data').then(workoutData => {
+    cy.request({
+      headers: {
+      Authorization: 'Bearer '+tokenvalue,
+      accept: 'application/json'
+    },
+    method: 'POST',
+    url: 'http://54.193.113.143:4000/workouts',
+    body: workoutData
+  })
       }).then(response => {
         expect(response.status).to.eq(201)
       }); 
