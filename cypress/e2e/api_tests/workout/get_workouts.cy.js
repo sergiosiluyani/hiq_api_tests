@@ -25,6 +25,7 @@ it('get workouts data', () => {
         url: 'http://54.193.113.143:4000/workouts'
       }).then(response => {
         expect(response.status).to.eq(200)
-      }); 
-})
+        cy.writeFile('cypress/fixtures/workout_data.json', JSON.stringify(response.body))
+      })
+      })
 })
